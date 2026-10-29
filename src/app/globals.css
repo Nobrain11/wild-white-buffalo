@@ -7,6 +7,12 @@
   --foreground: #e8f4ff;
   --cyan: #00e5ff;
   --violet: #7c3aed;
+  --ice: #e8f4ff;
+  --silver: #a8b8c8;
+  --midnight: #05070f;
+  --near-black: #0a0c14;
+  --charcoal: #1a1d2e;
+  --violet-glow: #a78bfa;
 }
 
 html {
@@ -20,6 +26,18 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
+
+/* Explicit color utilities — guarantee visibility even if Tailwind purge misses them */
+.text-ice { color: #e8f4ff !important; }
+.text-silver { color: #a8b8c8 !important; }
+.text-cyan { color: #00e5ff !important; }
+.text-midnight { color: #05070f !important; }
+.text-violet-glow { color: #a78bfa !important; }
+.bg-midnight { background-color: #05070f !important; }
+.bg-near-black { background-color: #0a0c14 !important; }
+.bg-charcoal { background-color: #1a1d2e !important; }
+.bg-cyan { background-color: #00e5ff !important; }
+.border-cyan { border-color: #00e5ff !important; }
 
 /* Flowing energy background */
 .energy-bg {
@@ -68,14 +86,12 @@ body {
   66% { transform: translateX(-2%) translateY(2%) rotate(-0.5deg); }
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .energy-wave {
     animation: none;
   }
 }
 
-/* High contrast text */
 .hero-title {
   text-shadow: 0 0 40px rgba(0, 229, 255, 0.35), 0 0 80px rgba(124, 58, 237, 0.2);
 }
