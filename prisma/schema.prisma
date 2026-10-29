@@ -1,0 +1,99 @@
+// Wild White Buffalo — core data model
+// Stage 2: users, XP ledger, missions, streaks, ranks
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(cuid())
+  openId        String?  @unique
+  username      String?  @unique
+  displayName   String?
+  avatarUrl     String?
+  bio           String?
+  xp            Int      @default(0)
+  rank          String   @default("Calf")
+  isPublic      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  xpLedger      XpLedger[]
+  completions   MissionCompletion[]
+  streak        Streak?
+  lootBalance   Int      @default(0)
+}
+
+model XpLedger {
+  id             String   @id @default(cuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  amount         Int
+  reason         String
+  missionId      String?
+  mission        Mission? @relation(fields: [missionId], references: [id])
+  idempotencyKey String   @unique
+  createdAt      DateTime @default(now())
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model Mission {
+  id             String   @id @default(cuid())
+  title          String
+  description    String
+  category       String
+  xpReward       Int
+  lootReward     Int      @default(0)
+  startsAt       DateTime?
+  endsAt         DateTime?
+  maxCompletions Int?
+  isActive       Boolean  @default(true)
+  verification   String   @default("self")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  completions    MissionCompletion[]
+  xpLedger       XpLedger[]
+}
+
+model MissionCompletion {
+  id             String   @id @default(cuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  missionId      String
+  mission        Mission  @relation(fields: [missionId], references: [id], onDelete: Cascade)
+  completedAt    DateTime @default(now())
+  idempotencyKey String   @unique
+  xpAwarded      Int
+  lootAwarded    Int      @default(0)
+
+  @@unique([userId, missionId, idempotencyKey])
+  @@index([userId])
+  @@index([missionId])
+  @@index([completedAt])
+}
+
+model Streak {
+  id             String   @id @default(cuid())
+  userId         String   @unique
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  currentStreak  Int      @default(0)
+  longestStreak  Int      @default(0)
+  lastActivityAt DateTime?
+  updatedAt      DateTime @updatedAt
+}
+
+model RankThreshold {
+  id    String @id @default(cuid())
+  name  String @unique
+  minXp Int    @unique
+  order Int
+  badge String?
+}
