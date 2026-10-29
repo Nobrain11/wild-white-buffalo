@@ -9,25 +9,28 @@
 
 https://github.com/Nobrain11/wild-white-buffalo
 
-## Current Status — Stage 1 Complete ✅
+## Current Status
 
-- Official logo assets (exact face, horns, proportions preserved — no AI substitutes)
-- Next.js 15 + TypeScript + Tailwind brand system
-- Midnight / ice-white / electric-cyan / deep-violet art direction
-- Animated flowing energy background (respects `prefers-reduced-motion`)
-- Cinematic homepage with hero, CTAs, ecosystem map, manifesto teaser
-- Responsive shared `PageShell` + consistent empty states
-- **All core routes implemented** (no broken links):
-  - Home, The Wild, The Herd, Stampede, Daily Quests
-  - WWB Pond, Buffalo Forge, Games Lab, The Council
-  - The Vault, Explorer, Field Notes, Tipbot
-  - Leaderboard, Achievements, Referrals, Profile, Admin
-  - Privacy, Terms, Security
+### Stage 1 — Complete ✅
+Brand system, homepage, energy background, all core routes, shared PageShell.
+
+### Stage 2 — In progress ✅ (core engine live)
+- Rank thresholds (Calf → Herd Legend)
+- Mission definitions (daily + weekly)
+- Server-side XP award path with **idempotency keys**
+- Daily / weekly claim windows (UTC)
+- In-memory store (swap for Prisma later)
+- API routes: `/api/missions`, `/api/claim`, `/api/progress`, `/api/leaderboard`, `/api/me`
+- Live Stampede UI (claim missions, rank progress bar)
+- Live Profile + Leaderboard pages
+- Prisma schema prepared for production DB
+
+Demo user is used until real OAuth is connected. No fake community activity is seeded.
 
 ## Planned Stages
 
-1. **Brand + Homepage + Routes** ← **done**
-2. Auth, profiles, XP ranks, Stampede missions, leaderboards
+1. Brand + Homepage + Routes ← **done**
+2. Auth, profiles, XP ranks, Stampede missions, leaderboards ← **core done**
 3. Games Lab (playable), Buffalo Forge (canvas), achievements, referrals
 4. Council (ideas/votes), Field Notes CMS, Vault data, Admin tools
 5. Telegram Tipbot + Mini App, Solana Explorer integration
@@ -50,6 +53,8 @@ npm run dev
 ```
 
 Open http://localhost:3000
+
+Try: open **/stampede**, claim a daily mission, then check **/profile** and **/leaderboard**.
 
 ## License
 
