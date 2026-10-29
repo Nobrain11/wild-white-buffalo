@@ -9,22 +9,27 @@
 
 https://github.com/Nobrain11/wild-white-buffalo
 
-## Current Status — Stage 1 Complete
+## Current Status — Stage 1 Complete ✅
 
 - Official logo assets (exact face, horns, proportions preserved — no AI substitutes)
 - Next.js 15 + TypeScript + Tailwind brand system
 - Midnight / ice-white / electric-cyan / deep-violet art direction
 - Animated flowing energy background (respects `prefers-reduced-motion`)
 - Cinematic homepage with hero, CTAs, ecosystem map, manifesto teaser
-- Responsive header + footer
-- Navigation skeleton for all core routes
+- Responsive shared `PageShell` + consistent empty states
+- **All core routes implemented** (no broken links):
+  - Home, The Wild, The Herd, Stampede, Daily Quests
+  - WWB Pond, Buffalo Forge, Games Lab, The Council
+  - The Vault, Explorer, Field Notes, Tipbot
+  - Leaderboard, Achievements, Referrals, Profile, Admin
+  - Privacy, Terms, Security
 
 ## Planned Stages
 
-1. **Brand + Homepage + Routes** ← current
+1. **Brand + Homepage + Routes** ← **done**
 2. Auth, profiles, XP ranks, Stampede missions, leaderboards
-3. Games Lab, Buffalo Forge, achievements, referrals
-4. Council, Field Notes, Vault, Admin
+3. Games Lab (playable), Buffalo Forge (canvas), achievements, referrals
+4. Council (ideas/votes), Field Notes CMS, Vault data, Admin tools
 5. Telegram Tipbot + Mini App, Solana Explorer integration
 6. Hardening, testing, deployment
 
@@ -35,6 +40,7 @@ https://github.com/Nobrain11/wild-white-buffalo
 - XP is community points only (not token holdings)
 - Server-side authority for all rewards and ranks
 - Public pages require no wallet
+- Community Loot is non-transferable and has zero monetary value
 
 ## Local Development
 
